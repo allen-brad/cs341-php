@@ -153,7 +153,7 @@ switch ($action) {
               <ul class="list-unstyled mt-3 mb-4">
                 <li>Friut Description</li>
               </ul>
-              <label for="quantity">Quantity:</label>
+              <label class="d-inline" for="quantity">Quantity:</label>
               <select id="quantity" name="quantity">
                 <option value="1">1</option>
                 <option value="2">2</option>
