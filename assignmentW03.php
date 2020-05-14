@@ -11,9 +11,11 @@
 
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="cropped-ba-192x192.png">
-  <link rel="stylesheet" href="css/main.css">
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/w03.css">
+
 <style>
   body {
   padding-top: 3.7rem;
