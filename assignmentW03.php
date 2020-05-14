@@ -142,6 +142,7 @@ switch ($action) {
 
       ?>
       </div>
+
       <div class="card-deck mb-3 text-center">
 
       <?php
@@ -202,6 +203,7 @@ switch ($action) {
             </div>
           </form>
         </div>
+      </div>
 
 
       <div>
