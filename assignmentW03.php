@@ -29,9 +29,15 @@ $action = filter_input(INPUT_GET, 'action');
 echo "ACTION IS: $action <br>";
 
 foreach ($fruits as $fuit) {
-  echo 'Name: '. key($fuits) .'<br>';
+  echo 'Name: '. key($fruits) .'<br>';
   echo 'Desc: '. $fuit['desc'] .'<br>';
   echo 'Price: $'. number_format($fuit['price'], 2) .'<br>';
+}
+
+if ( isset($_SESSION["cart"]) ) {
+  echo 'CART: '.count($_SESSION["cart"]);
+} else {
+  echo 'CART: 0';
 }
 
 switch ($action) {
