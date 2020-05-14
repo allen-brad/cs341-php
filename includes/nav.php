@@ -8,18 +8,14 @@
       <li class="nav-item <?php if($_SERVER['SCRIPT_NAME']=="/about.php") echo 'active'; ?>">
         <a class="nav-link" href="about.php">About Me<?php if($_SERVER['SCRIPT_NAME']=="/about.php") echo '<span class="sr-only">(current)</span>'; ?></a>
       </li>
-      <li class="nav-item <?php if($_SERVER['SCRIPT_NAME']=="/assignments.php") echo 'active'; ?>">
-        <a class="nav-link" href="assignments.php">Weekly<?php if($_SERVER['SCRIPT_NAME']=="/about.php") echo '<span class="sr-only">(current)</span>'; ?></a>
-      </li>
       <li class="nav-item dropdown <?php if($_SERVER['SCRIPT_NAME']=="/assignments.php") echo 'active'; ?>">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            <a class="nav-link dropdown-toggle" href="https://murmuring-beyond-32193.herokuapp.com/" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Assignments</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Week 01</a>
-              <a class="dropdown-item" href="#">Week 02</a>
-              <a class="dropdown-item" href="/assignmentW03.php">Week 03</a>
+              <a class="dropdown-item <?php if($_SERVER['SCRIPT_NAME']=="/assignmentW01.php") echo 'active'; ?>" href="/assignmentW01.ph">Week 01</a>
+              <a class="dropdown-item <?php if($_SERVER['SCRIPT_NAME']=="/assignmentW02.php") echo 'active'; ?>" href="/assignmentW02.ph">Week 02</a>
+              <a class="dropdown-item <?php if($_SERVER['SCRIPT_NAME']=="/assignmentW03.php") echo 'active'; ?>" href="/assignmentW03.php">Week 03</a>
             </div>
       </li>
     </ul>
   </div>
 </nav>
-  
