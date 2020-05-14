@@ -29,10 +29,9 @@ $action = filter_input(INPUT_GET, 'action');
 echo "ACTION IS: $action <br>";
 
 foreach ($fruits as $fuit) {
-  echo 'Name: '. $fuit['name'] .'<br>';
+  echo 'Name: '. key($fuits) .'<br>';
   echo 'Desc: '. $fuit['desc'] .'<br>';
-  echo 'Price: '. $fuit['price'] .'<br>';
-
+  echo 'Price: $'. number_format($fuit['price'], 2) .'<br>';
 }
 
 switch ($action) {
@@ -164,7 +163,7 @@ switch ($action) {
             </div>
           </form>
         </div>
-        
+
         <div class="card mb-4 box-shadow">
           <div class="card-header">
             <h4 class="my-0 font-weight-normal">Lemons</h4>
