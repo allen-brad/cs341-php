@@ -31,7 +31,7 @@ echo "ACTION IS: $action <br>";
 foreach ($fruits as $key=>$value) {
   echo 'Name: '. $key .'<br>';
   echo 'Desc: '. $fruits[$key]['desc'] .'<br>';
-  echo 'Price: $'. $fruits[$key]['price'] .'<br>';
+  echo 'Price: $'. number_format($fruits[$key]['price'], 2) .'<br>';
   //echo 'Price: $'. number_format($fruits[$key]['price'], 2) .'<br>';
 }
 
