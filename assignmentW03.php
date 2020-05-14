@@ -147,29 +147,25 @@ switch ($action) {
       <?php
       //make cards from fruit array
         foreach ($fruits as $key=>$value) {
-          echo 'Name: '. $key .'<br>';
-          echo 'Desc: '. $fruits[$key]['desc'] .'<br>';
-          echo 'Price: $'. number_format($fruits[$key]['price'], 2) .'<br>';
-
         echo '<div class="card mb-4 box-shadow">';
         echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . ' method="post" >' ;
         echo '<div class="card-header">';
         echo '<h4 class="my-0 font-weight-normal">'. $key . '</h4>';
         echo '</div>';
         echo '<div class="card-body d-flex flex-column">';
-        echo '<h1 class="card-title pricing-card-title">'. number_format($fruits[$key]['price'], 2) .'<small class="text-muted">/ per:</small></h1>';
+        echo '<h1 class="card-title pricing-card-title">$'. number_format($fruits[$key]['price'], 2) .'</h1>';
         echo '<ul class="list-unstyled mt-3 mb-4">';
         echo '<li>'.$fruits[$key]['desc']. '</li>';
         echo '</ul>';
-        echo '<div class="container"> \r\n <div class="row mt-2"> \r\n <div class="form-group">';
+        echo '<div class="container">'.\r\n.'<div class="row mt-2"> '.\r\n.' <div class="form-group">';
         echo '<label class="d-inline-block" for="quantity">Quantity:</label>';
         echo '<select name="from_year" class="form-control form-control-sm d-inline-block" style="width: auto;" id="quantity">';
-        echo '<option value="1">1</option>  \r\n <option value="2">2</option>  \r\n <option value="3">3</option> \r\n  <option value="4">4</option>  \r\n <option value="5">5</option>';
-        echo '</select>  \r\n </div>  \r\n </div>  \r\n </div>';
+        echo '<option value="1">1</option>  '.\r\n.' <option value="2">2</option>  '.\r\n.' <option value="3">3</option> '.\r\n.'  <option value="4">4</option>  '.\r\n.' <option value="5">5</option>';
+        echo '</select>  '.\r\n.' </div>  '.\r\n.' </div>  '.\r\n.' </div>';
         echo '<input type="hidden" name="action" value="addToCart">';
         echo '<input type="hidden" name="item" value="'.$key.'">';
         echo '<button type="submit" class="btn btn-lg btn-block btn-primary mt-auto">Add to Cart</button>';
-        echo '</div> \r\n </form> \r\n </div>';
+        echo '</div> '.\r\n.' </form> '.\r\n.' </div>';
 
         }
       ?>
