@@ -21,10 +21,10 @@
       if($_SERVER['SCRIPT_NAME']=="/assignmentW03.php"){
         echo '<div class="btn-group" role="group" aria-label="Cart Buttons">';
         //echo '<form class="form-inline mt-2 mt-md-0">';
-        echo '<button type="button" class="btn btn-secondary">Cart: ' . itemCountInCart() . '</button>';
-        echo '<button type="button" class="btn btn-secondary"';
+        echo '<button type="button" onclick="document.location = \'assignmentW03-cart.php\'" class="btn btn-secondary">Cart: ' . itemCountInCart() . '</button>';
+        echo '<button type="button" onclick="document.location = \'assignmentW03-checkout.php\'" class="btn btn-secondary"';
         if(itemCountInCart() == 0) {
-          echo 'dissabled';
+          echo 'disabled';
         }
         echo '>Check Out</button>';
         //echo '<button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Cart : ' . itemCountInCart() .'</button>';
