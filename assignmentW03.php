@@ -113,6 +113,18 @@ switch ($action) {
     </div>
 
     <div class="container">
+      <div>
+      <?php
+
+        // show session variables
+        echo "Session variables are:<br>";
+        print_r($_SESSION).'<br>';
+        print_r($fruits);
+
+        echo '<br>Items in cart: ' . itemCountInCart();
+
+      ?>
+      </div>
       <div class="card-deck mb-3 text-center">
         <div class="card mb-4 box-shadow">
           <div class="card-header">
@@ -262,16 +274,6 @@ switch ($action) {
           </div>
         </div>
       </footer>
-
-      <?php
-
-      // show session variables
-      echo "Session variables are:<br>";
-      print_r($_SESSION);
-
-      echo '<br>Items in cart: ' . itemCountInCart();
-
-      ?>
     </div>
 
 <!-- scripts -->
