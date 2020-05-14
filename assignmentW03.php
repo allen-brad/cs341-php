@@ -151,7 +151,7 @@ switch ($action) {
       //make cards from fruit array
         foreach ($fruits as $key=>$value) {
         echo '<div class="card mb-4 box-shadow">';
-        echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . ' method="post" >' ;
+        echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '" method="post" >' ;
         echo '<div class="card-header">';
         echo '<h4 class="my-0 font-weight-normal">'. $key . '</h4>';
         echo '</div>';
