@@ -186,7 +186,7 @@ switch ($action) {
                 <div class="row mt-2">
                   <div class="form-group">
                     <label class="d-inline-block" for="quantity">Quantity:</label>
-                    <select name="from_year" class="form-control form-control-sm d-inline-block" style="width: auto;" id="quantity">
+                    <select name="quantity" class="form-control form-control-sm d-inline-block" style="width: auto;" id="quantity">
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
