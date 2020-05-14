@@ -20,7 +20,7 @@ $_SESSION["brad"] = "was here";
 
 include $_SERVER['DOCUMENT_ROOT'].'/includes/friut_functions.php';
 
-include $_SERVER['DOCUMENT_ROOT'].'/includes/friut.php';
+include $_SERVER['DOCUMENT_ROOT'].'/includes/friuts.php';
 
 
 /*_____________________ actions _____________________*/
