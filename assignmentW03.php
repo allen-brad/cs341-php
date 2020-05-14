@@ -153,6 +153,25 @@ switch ($action) {
               <ul class="list-unstyled mt-3 mb-4">
                 <li>Friut Description</li>
               </ul>
+              <div class="container">
+                <div class="row mt-2">
+                    <div class="form-group">
+
+                        <label class="d-inline-block" for="from_year"><small><strong>Search from year:</strong></small></label>
+
+                        <select name="from_year" class="form-control form-control-sm d-inline-block" style="width: auto;" id="from_year">
+                            <option value="1980">1980 (default)</option>
+                            {% for year in from_years %}
+
+                            <option value="{{ year }}">{{ year }}</option>
+
+                            {% endfor %}
+                        </select>
+
+                    </div>
+                </div>
+              </div>
+
               <label class="d-inline" for="quantity">Quantity:</label>
               <select class="d-inline" id="quantity" name="quantity">
                 <option value="1">1</option>
