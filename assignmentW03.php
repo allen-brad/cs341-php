@@ -155,32 +155,19 @@ switch ($action) {
               </ul>
               <div class="container">
                 <div class="row mt-2">
-                    <div class="form-group">
-
-                        <label class="d-inline-block" for="from_year"><small><strong>Search from year:</strong></small></label>
-
-                        <select name="from_year" class="form-control form-control-sm d-inline-block" style="width: auto;" id="from_year">
-                            <option value="1980">1980 (default)</option>
-                            {% for year in from_years %}
-
-                            <option value="{{ year }}">{{ year }}</option>
-
-                            {% endfor %}
-                        </select>
-
-                    </div>
+                  <div class="form-group">
+                    <label class="d-inline-block" for="quantity"><small><strong>Search from year:</strong></small></label>
+                    <select name="from_year" class="form-control form-control-sm d-inline-block" style="width: auto;" id="quantity">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                  </div>
                 </div>
               </div>
-
-              <label class="d-inline" for="quantity">Quantity:</label>
-              <select class="d-inline" id="quantity" name="quantity">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-
+              
               <input type="hidden" name="action" value="addToCart">
               <input type="hidden" name="item" value="Lime">
 
