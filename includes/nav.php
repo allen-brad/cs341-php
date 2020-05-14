@@ -19,10 +19,14 @@
     </ul>
     <?php
       if($_SERVER['SCRIPT_NAME']=="/assignmentW03.php"){
-        echo '<form class="form-inline mt-2 mt-md-0">';
-        echo '<button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Cart : ' . itemCountInCart() .'</button>';
-        echo '<button class="btn btn-secondary my-2 my-sm-0" type="submit">Check Out</button>';
-        echo '</form>';
+        echo '<div class="btn-group" role="group" aria-label="Cart Buttons">'
+        //echo '<form class="form-inline mt-2 mt-md-0">';
+        echo '<button type="button" class="btn btn-secondary">Cart: ' . itemCountInCart() . '</button>';
+        echo '<button type="button" class="btn btn-secondary">Check Out</button>';
+        //echo '<button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Cart : ' . itemCountInCart() .'</button>';
+        //echo '<button class="btn btn-secondary my-2 my-sm-0" type="submit">Check Out</button>';
+        //echo '</form>';
+        echo '</div>';
       }
   ?>
   </div>
