@@ -1,3 +1,85 @@
+<?
+
+// Start the session
+session_start();
+
+//for debugging
+// remove all session variables
+/* session_unset();
+// destroy the session
+session_destroy(); */
+
+
+include $_SERVER['DOCUMENT_ROOT'].'/includes/friut_functions.php';
+
+include $_SERVER['DOCUMENT_ROOT'].'/includes/friut.php';
+
+
+/*_____________________ actions _____________________*/
+
+$action = filter_input(INPUT_POST, 'action');
+    if ($action == NULL){
+$action = filter_input(INPUT_GET, 'action');
+}
+echo "ACTION IS: $action <br>";
+
+switch ($action) {
+    case 'addToCart':
+        //filter post variables
+        $quantity = filter_input(INPUT_POST, 'quantity', FILTER_SANITIZE_NUMBER_INT);
+        $item = filter_input(INPUT_POST, 'item', FILTER_SANITIZE_STRING);
+        
+        //test to see if item really is a fruit before adding it to the cart
+        //if ( !searchForFruitByName($item, $fruits)) {
+        if ( !isset($fruits[$item]) ) {
+            echo "ERROR: $item is not for sale! <br>";
+        } else {
+            echo "$item found in fruits... safe to proceed. <br>";
+            
+            //shopping cart is an associative array with fruit name and quantity
+            //if cart does not exist then create it and add item
+            if ( !isset($_SESSION["cart"]) ) {
+                //make the cart and add item
+                echo "MAKING CART <br>";
+                $_SESSION["cart"][] = array(
+                    'product' => $item,
+                    'quantity' => $quantity
+                );
+            } else {
+                //cart exists so check and see if the item is already in the cart and increase the quantity to it
+                if ( searchCartByItem($item) ) {
+                    echo "$item found in cart... increment. <br>";
+                    updateQuantityInCart($item, $quantity);
+                } else {
+                    echo "$item not found in cart... adding to cart. <br>";
+                    $_SESSION["cart"][] = array(
+                        'product' => $item,
+                        'quantity' => $quantity,
+                    );
+                }
+            }
+        }
+        // PGR to redirect to this page to prevent page refresh resubmiting form post
+    break;
+
+    case 'checkForLemons':
+        $item = filter_input(INPUT_POST, 'item', FILTER_SANITIZE_STRING);
+        if ( !searchCartByItem($item)) {
+            echo "CheckForLemons: $item is NOT in Cart <br>";
+            echo searchCartByItem($item, $_SESSION['cart']) .'<br>';
+        } else {
+            echo "CheckForLemons: $item is in Cart <br>";
+        }
+    break;
+
+    case 'checkPriceOfLemons':
+        $item = filter_input(INPUT_POST, 'item', FILTER_SANITIZE_STRING);
+
+        echo 'The unit price of lemons is: ' . $fruits[$item]['price'] . '<br>';
+    break;
+    }
+?>
+
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -16,11 +98,6 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/w03.css">
 
-<style>
-  body {
-  padding-top: 3.7rem;
-}
-</style>
 </head>
 
 <body>
@@ -31,8 +108,8 @@
   <?php include $_SERVER['DOCUMENT_ROOT'].'/includes/nav.php'; ?>
 
   <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-      <h1 class="display-4">Pricing</h1>
-      <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p>
+      <h1 class="display-4">Friuty Fresh</h1>
+      <p class="lead">We're keepin' it fresh. Fight of those quaranteen pounds by eating our fresh friut insead of that junk in your pantry!</p>
     </div>
 
     <div class="container">
@@ -84,6 +161,70 @@
         </div>
       </div>
 
+      <div>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
+          <label for="quantity">Quantity:</label>
+
+          <select id="quantity" name="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+          </select>
+
+          <input type="hidden" name="action" value="addToCart">
+          <input type="hidden" name="item" value="Lemon">
+          <input type="submit" value="Order Lemons" >
+        </form>
+
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
+            <label for="quantity">Quantity:</label>
+
+            <select id="quantity" name="quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+
+            <input type="hidden" name="action" value="addToCart">
+            <input type="hidden" name="item" value="Lime">
+            <input type="submit" value="Order Limes" >
+        </form>
+
+
+      <br>
+
+      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
+          <input type="hidden" name="action" value="addMoreLemons">
+          <input type="hidden" name="item" value="Lemon">
+          <input type="hidden" name="quantity" value="6">
+          <input type="submit" value="Order More Lemons" >
+      </form>
+
+      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
+          <input type="hidden" name="action" value="checkForLemons">
+          <input type="hidden" name="item" value="Lemon">
+          <input type="submit" value="Check Cart for Lemons" >
+      </form>
+
+      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
+          <input type="hidden" name="action" value="checkPriceOfLemons">
+          <input type="hidden" name="item" value="Lemon">
+          <input type="submit" value="Check Price for Lemons" >
+      </form>
+
+      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
+          <input type="hidden" name="action" value="addToCart">
+          <input type="hidden" name="item" value="Potato">
+          <input type="hidden" name="quantity" value="6">
+          <input type="submit" value="Order Potatos" >
+      </form>
+
+      </div>
+
       <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row">
           <div class="col-12 col-md">
@@ -121,6 +262,16 @@
           </div>
         </div>
       </footer>
+
+      <?php
+
+      // show session variables
+      echo "Session variables are:<br>";
+      print_r($_SESSION);
+
+      echo '<br>Items in cart: ' . itemCountInCart();
+
+      ?>
     </div>
 
 <!-- scripts -->
