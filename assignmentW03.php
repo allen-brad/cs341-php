@@ -9,6 +9,9 @@ session_start();
 // destroy the session
 session_destroy(); */
 
+$_SESSION["brad"] = "was here";
+
+
 
 include $_SERVER['DOCUMENT_ROOT'].'/includes/friut_functions.php';
 
