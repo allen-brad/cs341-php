@@ -157,15 +157,15 @@ switch ($action) {
         echo '<ul class="list-unstyled mt-3 mb-4">';
         echo '<li>'.$fruits[$key]['desc']. '</li>';
         echo '</ul>';
-        echo '<div class="container">'.\r\n.'<div class="row mt-2"> '.\r\n.' <div class="form-group">';
+        echo '<div class="container"><div class="row mt-2">  <div class="form-group">';
         echo '<label class="d-inline-block" for="quantity">Quantity:</label>';
         echo '<select name="from_year" class="form-control form-control-sm d-inline-block" style="width: auto;" id="quantity">';
-        echo '<option value="1">1</option>  '.\r\n.' <option value="2">2</option>  '.\r\n.' <option value="3">3</option> '.\r\n.'  <option value="4">4</option>  '.\r\n.' <option value="5">5</option>';
-        echo '</select>  '.\r\n.' </div>  '.\r\n.' </div>  '.\r\n.' </div>';
+        echo '<option value="1">1</option>   <option value="2">2</option>   <option value="3">3</option>   <option value="4">4</option>   <option value="5">5</option>';
+        echo '</select>   </div>   </div>   </div>';
         echo '<input type="hidden" name="action" value="addToCart">';
         echo '<input type="hidden" name="item" value="'.$key.'">';
         echo '<button type="submit" class="btn btn-lg btn-block btn-primary mt-auto">Add to Cart</button>';
-        echo '</div> '.\r\n.' </form> '.\r\n.' </div>';
+        echo '</div>  </form>  </div>';
 
         }
       ?>
