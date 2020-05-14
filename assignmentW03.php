@@ -143,10 +143,40 @@ switch ($action) {
       ?>
       </div>
       <div class="card-deck mb-3 text-center">
+
+      <?php
+      //make cards from fruit array
+        foreach ($fruits as $key=>$value) {
+          echo 'Name: '. $key .'<br>';
+          echo 'Desc: '. $fruits[$key]['desc'] .'<br>';
+          echo 'Price: $'. number_format($fruits[$key]['price'], 2) .'<br>';
+
+        echo '<div class="card mb-4 box-shadow">';
+        echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . ' method="post" >' ;
+        echo '<div class="card-header">';
+        echo '<h4 class="my-0 font-weight-normal">'. $key . '</h4>';
+        echo '</div>';
+        echo '<div class="card-body d-flex flex-column">';
+        echo '<h1 class="card-title pricing-card-title">'. number_format($fruits[$key]['price'], 2) .'<small class="text-muted">/ per:</small></h1>';
+        echo '<ul class="list-unstyled mt-3 mb-4">';
+        echo '<li>'.$fruits[$key]['desc']. '</li>';
+        echo '</ul>';
+        echo '<div class="container"> \r\n <div class="row mt-2"> \r\n <div class="form-group">';
+        echo '<label class="d-inline-block" for="quantity">Quantity:</label>';
+        echo '<select name="from_year" class="form-control form-control-sm d-inline-block" style="width: auto;" id="quantity">';
+        echo '<option value="1">1</option>  \r\n <option value="2">2</option>  \r\n <option value="3">3</option> \r\n  <option value="4">4</option>  \r\n <option value="5">5</option>';
+        echo '</select>  \r\n </div>  \r\n </div>  \r\n </div>';
+        echo '<input type="hidden" name="action" value="addToCart">';
+        echo '<input type="hidden" name="item" value="'.$key.'">';
+        echo '<button type="submit" class="btn btn-lg btn-block btn-primary mt-auto">Add to Cart</button>';
+        echo '</div> \r\n </form> \r\n </div>';
+
+        }
+      ?>
         <div class="card mb-4 box-shadow">
           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
             <div class="card-header">
-              <h4 class="my-0 font-weight-normal">Bananas</h4>
+              <h4 class="my-0 font-weight-normal">TEST</h4>
             </div>
             <div class="card-body d-flex flex-column">
               <h1 class="card-title pricing-card-title">$1.00 <small class="text-muted">/ mo</small></h1>
@@ -156,7 +186,7 @@ switch ($action) {
               <div class="container">
                 <div class="row mt-2">
                   <div class="form-group">
-                    <label class="d-inline-block" for="quantity"><small><strong>Search from year:</strong></small></label>
+                    <label class="d-inline-block" for="quantity">Quantity:</label>
                     <select name="from_year" class="form-control form-control-sm d-inline-block" style="width: auto;" id="quantity">
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -167,7 +197,7 @@ switch ($action) {
                   </div>
                 </div>
               </div>
-              
+
               <input type="hidden" name="action" value="addToCart">
               <input type="hidden" name="item" value="Lime">
 
@@ -177,82 +207,6 @@ switch ($action) {
           </form>
         </div>
 
-        <div class="card mb-4 box-shadow">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Lemons</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>20 users included</li>
-              <li>10 GB of storage</li>
-              <li>Priority email support</li>
-              <li>Help center access</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
-          </div>
-        </div>
-        <div class="card mb-4 box-shadow">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Strawberries</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>30 users included</li>
-              <li>15 GB of storage</li>
-              <li>Phone and email support</li>
-              <li>Help center access</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>
-          </div>
-        </div>
-        <div class="card mb-4 box-shadow">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Lime</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>10 users included</li>
-              <li>2 GB of storage</li>
-              <li>Email support</li>
-              <li>Help center access</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
-          </div>
-        </div>
-        <div class="card mb-4 box-shadow">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Orange</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>20 users included</li>
-              <li>10 GB of storage</li>
-              <li>Priority email support</li>
-              <li>Help center access</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
-          </div>
-        </div>
-        <div class="card mb-4 box-shadow">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Pineapple</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>30 users included</li>
-              <li>15 GB of storage</li>
-              <li>Phone and email support</li>
-              <li>Help center access</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>
-          </div>
-        </div>
-      </div>
 
       <div>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
