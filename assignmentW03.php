@@ -26,7 +26,6 @@ $action = filter_input(INPUT_POST, 'action');
     if ($action == NULL){
 $action = filter_input(INPUT_GET, 'action');
 }
-echo "ACTION IS: $action <br>";
 
 /* foreach ($fruits as $key=>$value) {
   echo 'Name: '. $key .'<br>';
@@ -34,11 +33,6 @@ echo "ACTION IS: $action <br>";
   echo 'Price: $'. number_format($fruits[$key]['price'], 2) .'<br>';
 } */
 
-if ( isset($_SESSION["cart"]) ) {
-  echo 'CART: '.count($_SESSION["cart"]);
-} else {
-  echo 'CART: 0';
-}
 
 switch ($action) {
     case 'addToCart':
@@ -140,6 +134,14 @@ switch ($action) {
 
         echo '<br>Items in cart: ' . itemCountInCart();
 
+        echo "ACTION IS: $action <br>";
+
+        if ( isset($_SESSION["cart"]) ) {
+          echo 'CART: '.count($_SESSION["cart"]);
+        } else {
+          echo 'CART: 0';
+        }
+
       ?>
       </div>
 
@@ -204,7 +206,6 @@ switch ($action) {
           </form>
         </div>
       </div>
-
 
       <div>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >

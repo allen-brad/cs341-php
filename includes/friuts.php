@@ -23,11 +23,11 @@ $fruits = array(
     'Pineapple'=> array (
         'desc' => '2 - 2.5 lbs.',
         'price' => 3.00
-    ),
-    'Avacado'=> array (
+    )
+/*     'Avacado'=> array (
         'desc' => '1 lb. Bag',
         'price' => 4.44
-    )
+    ) */
 );
 
 
