@@ -29,7 +29,7 @@ $action = filter_input(INPUT_GET, 'action');
 echo "ACTION IS: $action <br>";
 
 foreach ($fruits as $fuit) {
-  echo 'Name: '. key($fruits) .'<br>';
+  echo 'Name: '. key($fruits[3]) .'<br>';
   echo 'Desc: '. $fuit['desc'] .'<br>';
   echo 'Price: $'. number_format($fuit['price'], 2) .'<br>';
 }
