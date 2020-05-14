@@ -21,7 +21,7 @@
       if($_SERVER['SCRIPT_NAME']=="/assignmentW03.php"){
         echo '<form class="form-inline mt-2 mt-md-0">';
         //echo '<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">';
-        echo '<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>';
+        echo '<button class="btn btn-secondary my-2 my-sm-0" type="submit">Cart : ' . itemCountInCart() .'</button>';
         echo '</form>';
       }
   ?>
