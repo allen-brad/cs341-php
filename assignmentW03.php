@@ -14,9 +14,6 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$_SESSION["brad"] = "was here";
-
-
 
 include $_SERVER['DOCUMENT_ROOT'].'/includes/friut_functions.php';
 
@@ -30,6 +27,13 @@ $action = filter_input(INPUT_POST, 'action');
 $action = filter_input(INPUT_GET, 'action');
 }
 echo "ACTION IS: $action <br>";
+
+foreach ($fruits as $fuit) {
+  echo 'Name: '. $fuit['name'] .'<br>';
+  echo 'Desc: '. $fuit['desc'] .'<br>';
+  echo 'Price: '. $fuit['price'] .'<br>';
+
+}
 
 switch ($action) {
     case 'addToCart':
@@ -101,6 +105,7 @@ switch ($action) {
 
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="cropped-ba-192x192.png">
+
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
@@ -127,7 +132,6 @@ switch ($action) {
         // show session variables
         echo "Session variables are:<br>";
         print_r($_SESSION).'<br>';
-        print_r($fruits);
 
         echo '<br>Items in cart: ' . itemCountInCart();
 
@@ -135,23 +139,35 @@ switch ($action) {
       </div>
       <div class="card-deck mb-3 text-center">
         <div class="card mb-4 box-shadow">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Free</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>10 users included</li>
-              <li>2 GB of storage</li>
-              <li>Email support</li>
-              <li>Help center access</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
-          </div>
+          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">Bananas</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">$1.00 <small class="text-muted">/ mo</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>Friut Description</li>
+              </ul>
+              <select id="quantity" name="quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+
+              <input type="hidden" name="action" value="addToCart">
+              <input type="hidden" name="item" value="Lime">
+
+              <button type="submit" class="btn btn-lg btn-block btn-outline-primary">Order Lemons</button>
+              
+            </div>
+          </form>
         </div>
+        
         <div class="card mb-4 box-shadow">
           <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Pro</h4>
+            <h4 class="my-0 font-weight-normal">Lemons</h4>
           </div>
           <div class="card-body">
             <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
@@ -166,7 +182,52 @@ switch ($action) {
         </div>
         <div class="card mb-4 box-shadow">
           <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Enterprise</h4>
+            <h4 class="my-0 font-weight-normal">Strawberries</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>30 users included</li>
+              <li>15 GB of storage</li>
+              <li>Phone and email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Lime</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>10 users included</li>
+              <li>2 GB of storage</li>
+              <li>Email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Orange</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>20 users included</li>
+              <li>10 GB of storage</li>
+              <li>Priority email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Pineapple</h4>
           </div>
           <div class="card-body">
             <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
