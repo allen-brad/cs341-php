@@ -30,8 +30,8 @@ echo "ACTION IS: $action <br>";
 
 foreach ($fruits as $key=>$value) {
   echo 'Name: '. $key .'<br>';
-  echo 'Desc: '. $key['desc'] .'<br>';
-  echo 'Price: $'. number_format($key['price'], 2) .'<br>';
+  echo 'Desc: '. $fruits[$key]['desc'] .'<br>';
+  echo 'Price: $'. number_format($friuts[$key]['price'], 2) .'<br>';
 }
 
 if ( isset($_SESSION["cart"]) ) {
