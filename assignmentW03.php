@@ -45,13 +45,13 @@ switch ($action) {
         if ( !isset($fruits[$item]) ) {
             echo "ERROR: $item is not for sale! <br>";
         } else {
-            echo "$item found in fruits... safe to proceed. <br>";
+            //echo "$item found in fruits... safe to proceed. <br>";
             
             //shopping cart is an associative array with fruit name and quantity
             //if cart does not exist then create it and add item
             if ( !isset($_SESSION["cart"]) ) {
                 //make the cart and add item
-                echo "MAKING CART <br>";
+                //echo "MAKING CART <br>";
                 $_SESSION["cart"][] = array(
                     'product' => $item,
                     'quantity' => $quantity
@@ -121,7 +121,7 @@ switch ($action) {
 
   <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
       <h1 class="display-4">Friuty Fresh</h1>
-      <p class="lead">We're keepin' it fresh. Fight of those quaranteen pounds by eating our fresh friut insead of that junk in your pantry!</p>
+      <p class="lead">We're keepin' it fresh. Fight off those quaranteen pounds by eating our fresh friut insead of that junk in your pantry!</p>
     </div>
 
     <div class="container">
@@ -132,15 +132,9 @@ switch ($action) {
         echo "Session variables are:<br>";
         print_r($_SESSION).'<br>';
 
-        echo '<br>Items in cart: ' . itemCountInCart();
+        echo '<br>Items in cart: ' . itemCountInCart() . '<br>';
 
         echo "ACTION IS: $action <br>";
-
-        if ( isset($_SESSION["cart"]) ) {
-          echo 'CART: '.count($_SESSION["cart"]);
-        } else {
-          echo 'CART: 0';
-        }
 
       ?>
       </div>
