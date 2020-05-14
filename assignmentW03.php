@@ -28,12 +28,11 @@ $action = filter_input(INPUT_GET, 'action');
 }
 echo "ACTION IS: $action <br>";
 
-foreach ($fruits as $key=>$value) {
+/* foreach ($fruits as $key=>$value) {
   echo 'Name: '. $key .'<br>';
   echo 'Desc: '. $fruits[$key]['desc'] .'<br>';
   echo 'Price: $'. number_format($fruits[$key]['price'], 2) .'<br>';
-  //echo 'Price: $'. number_format($fruits[$key]['price'], 2) .'<br>';
-}
+} */
 
 if ( isset($_SESSION["cart"]) ) {
   echo 'CART: '.count($_SESSION["cart"]);
@@ -149,7 +148,7 @@ switch ($action) {
             <div class="card-header">
               <h4 class="my-0 font-weight-normal">Bananas</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body d-flex flex-column">
               <h1 class="card-title pricing-card-title">$1.00 <small class="text-muted">/ mo</small></h1>
               <ul class="list-unstyled mt-3 mb-4">
                 <li>Friut Description</li>
@@ -166,7 +165,7 @@ switch ($action) {
               <input type="hidden" name="action" value="addToCart">
               <input type="hidden" name="item" value="Lime">
 
-              <button type="submit" class="btn btn-lg btn-block btn-outline-primary">Order Lemons</button>
+              <button type="submit" class="btn btn-lg btn-block btn-primary mt-auto">Order Lemons</button>
               
             </div>
           </form>
