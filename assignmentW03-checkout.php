@@ -112,11 +112,6 @@ switch ($action) {
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/includes/nav.php'; ?>
 
-  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-      <h1 class="display-4">Check Out</h1>
-      <p class="lead">We're keepin' it fresh. Fight off those quaranteen pounds by eating our fresh friut insead of that junk in your pantry!</p>
-  </div>
-
   <div class="container">
     <div>
       <?php
@@ -132,8 +127,8 @@ switch ($action) {
       ?>
     </div>
     <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <h2>Checkout form</h2>
+        <img class="d-block mx-auto mb-4" src="img/ba.svg" alt="" width="72" height="72">
+        <h2>Checkout</h2>
         <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
       </div>
 
@@ -141,7 +136,7 @@ switch ($action) {
         <div class="col-md-4 order-md-2 mb-4">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Your cart</span>
-            <span class="badge badge-secondary badge-pill">3</span>
+            <span class="badge badge-secondary badge-pill"> <?php itemCountInCart() ?></span>
           </h4>
           <ul class="list-group mb-3">
             <li class="list-group-item d-flex justify-content-between lh-condensed">
