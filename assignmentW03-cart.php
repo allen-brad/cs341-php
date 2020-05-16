@@ -99,36 +99,37 @@ switch ($action) {
                 <ul class="list-group mb-3">
                     <!-- build indiviual cart items  -->
                     <?php
-                    if ( isset($_SESSION['cart']) ) {
-                        $total = 0;
-                        foreach($_SESSION['cart'] as $item){
-                            $total += $fruits[$item['product']]['price']*$item['quantity'];
-                            echo '<li class="list-group-item d-flex justify-content-between lh-condensed">';
-                            echo '<di>';
-                            echo '<h6 class="my-0">'. $item['product'] . '</h6>';
-                            echo '<small class="text-muted">'. $fruits[$item['product']]['desc'] . '</small>';
-                            echo '<form action="'. htmlspecialchars($_SERVER["PHP_SELF"]). '" method="post" >';
-                            echo '<div class="input-group mb-3">';
-                            echo '<input type="text" name="quantity" class="form-control" placeholder="'. $item['quantity'] . '" aria-label="Quantity" aria-describedby="basic-addon2">';
-                            echo '<div class="input-group-append">';
-                            echo '<input type="hidden" name="action" value="uptateQuantity">';
-                            echo '<input type="hidden" name="item" value="'. $item['product']. '">';
-                            echo '<button class="btn btn-outline-secondary" type="sumbit">Update</button>';
-                            echo '<button class="btn btn-outline-secondary" type="button" onclick="document.location = \'assignmentW03-cart.php?action=removeFromCart&item='.$item['product']. ' \'">Remove</button> ';
-                            echo '</div>';
-                            echo '</div>';
-                            echo '</form>';
-                            echo '</di>';
-                            echo '<span class="text-muted">$' .number_format($fruits[$item['product']]['price']*$item['quantity'], 2) . '</span>';
-                            echo '</li>';
+                        if ( isset($_SESSION['cart']) ) {
+                            $total = 0;
+                            foreach($_SESSION['cart'] as $item){
+                                $total += $fruits[$item['product']]['price']*$item['quantity'];
+                                echo '<li class="list-group-item d-flex justify-content-between lh-condensed">';
+                                echo '<di>';
+                                echo '<h6 class="my-0">'. $item['product'] . '</h6>';
+                                echo '<small class="text-muted">'. $fruits[$item['product']]['desc'] . '</small>';
+                                echo '<form action="'. htmlspecialchars($_SERVER["PHP_SELF"]). '" method="post" >';
+                                echo '<div class="input-group mb-3">';
+                                echo '<input type="text" name="quantity" class="form-control" placeholder="'. $item['quantity'] . '" aria-label="Quantity" aria-describedby="basic-addon2">';
+                                echo '<div class="input-group-append">';
+                                echo '<input type="hidden" name="action" value="uptateQuantity">';
+                                echo '<input type="hidden" name="item" value="'. $item['product']. '">';
+                                echo '<button class="btn btn-outline-secondary" type="sumbit">Update</button>';
+                                echo '<button class="btn btn-outline-secondary" type="button" onclick="document.location = \'assignmentW03-cart.php?action=removeFromCart&item='.$item['product']. ' \'">Remove</button> ';
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</form>';
+                                echo '</di>';
+                                echo '<span class="text-muted">$' .number_format($fruits[$item['product']]['price']*$item['quantity'], 2) . '</span>';
+                                echo '</li>';
 
+                            }
+                    
+                                echo '<li class="list-group-item d-flex justify-content-between">';
+                                echo '<span>Total (USD)</span>';
+                                echo '<strong>$'. nuber_formats($total,2).'</strong>';
+                                echo '</li>';
                         }
-                    }
                     ?>
-                    <li class="list-group-item d-flex justify-content-between">
-                    <span>Total (USD)</span>
-                    <strong><?php echo '$'. nuber_formats($total,2); ?></strong>
-                    </li>
                 </ul>
             </div>
         </div>
