@@ -3,12 +3,6 @@
 // Start the session
 session_start();
 
-//for debugging
-// remove all session variables
-/* session_unset();
-// destroy the session
-session_destroy(); */
-
 //error logging
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -63,12 +57,12 @@ switch ($action) {
                         'product' => $item,
                         'quantity' => $quantity,
                     );
+                            // PRG to redirect to this page to prevent page refresh resubmiting form post
                     header("Location: " .$_SERVER['PHP_SELF']);
                     exit();
                 }
             }
         }
-        // PGR to redirect to this page to prevent page refresh resubmiting form post
     break;
     }
 ?>
@@ -123,129 +117,34 @@ switch ($action) {
 
       <div class="card-deck mb-3 text-center">
 
-      <?php
-      //make cards from fruit array
-        foreach ($fruits as $key=>$value) {
-        echo '<div class="card mb-4 box-shadow">';
-        echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '" method="post" >' ;
-        echo '<div class="card-header">';
-        echo '<h4 class="my-0 font-weight-normal">'. $key . '</h4>';
-        echo '</div>';
-        echo '<div class="card-body d-flex flex-column">';
-        echo '<h1 class="card-title pricing-card-title">$'. number_format($fruits[$key]['price'], 2) .'</h1>';
-        echo '<ul class="list-unstyled mt-3 mb-4">';
-        echo '<li>'.$fruits[$key]['desc']. '</li>';
-        echo '</ul>';
-        echo '<div class="container"><div class="row mt-2">  <div class="form-group">';
-        echo '<label class="d-inline-block" for="quantity">Quantity:&nbsp</label>';
-        echo '<select name="quantity" class="form-control form-control-sm d-inline-block" style="width: auto;" id="quantity">';
-        echo '<option value="1">1</option>   <option value="2">2</option>   <option value="3">3</option>   <option value="4">4</option>   <option value="5">5</option>';
-        echo '</select>   </div>   </div>   </div>';
-        echo '<input type="hidden" name="action" value="addToCart">';
-        echo '<input type="hidden" name="item" value="'.$key.'">';
-        echo '<button type="submit" class="btn btn-lg btn-block btn-primary mt-auto">Add to Cart</button>';
-        echo '</div>  </form>  </div>';
+        <?php
+        //make cards from fruit array
+          foreach ($fruits as $key=>$value) {
+          echo '<div class="card mb-4 box-shadow">';
+          echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '" method="post" >' ;
+          echo '<div class="card-header">';
+          echo '<h4 class="my-0 font-weight-normal">'. $key . '</h4>';
+          echo '</div>';
+          echo '<div class="card-body d-flex flex-column">';
+          echo '<h1 class="card-title pricing-card-title">$'. number_format($fruits[$key]['price'], 2) .'</h1>';
+          echo '<ul class="list-unstyled mt-3 mb-4">';
+          echo '<li>'.$fruits[$key]['desc']. '</li>';
+          echo '</ul>';
+          echo '<div class="container"><div class="row mt-2">  <div class="form-group">';
+          echo '<label class="d-inline-block" for="quantity">Quantity:&nbsp</label>';
+          echo '<select name="quantity" class="form-control form-control-sm d-inline-block" style="width: auto;" id="quantity">';
+          echo '<option value="1">1</option>   <option value="2">2</option>   <option value="3">3</option>   <option value="4">4</option>   <option value="5">5</option>';
+          echo '</select>   </div>   </div>   </div>';
+          echo '<input type="hidden" name="action" value="addToCart">';
+          echo '<input type="hidden" name="item" value="'.$key.'">';
+          echo '<button type="submit" class="btn btn-lg btn-block btn-primary mt-auto">Add to Cart</button>';
+          echo '</div>  </form>  </div>';
 
-        }
-      ?>
-        <div class="card mb-4 box-shadow">
-          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
-            <div class="card-header">
-              <h4 class="my-0 font-weight-normal">TEST</h4>
-            </div>
-            <div class="card-body d-flex flex-column">
-              <h1 class="card-title pricing-card-title">$1.00 <small class="text-muted">/ mo</small></h1>
-              <ul class="list-unstyled mt-3 mb-4">
-                <li>Friut Description</li>
-              </ul>
-              <div class="container">
-                <div class="row mt-2">
-                  <div class="form-group">
-                    <label class="d-inline-block" for="quantity">Quantity:</label>
-                    <select name="quantity" class="form-control form-control-sm d-inline-block" style="width: auto;" id="quantity">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              <input type="hidden" name="action" value="addToCart">
-              <input type="hidden" name="item" value="Lime">
-
-              <button type="submit" class="btn btn-lg btn-block btn-primary mt-auto">Order Lemons</button>
-              
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <div>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
-          <label for="quantity">Quantity:</label>
-
-          <select id="quantity" name="quantity">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-          </select>
-
-          <input type="hidden" name="action" value="addToCart">
-          <input type="hidden" name="item" value="Lemon">
-          <input type="submit" value="Order Lemons" >
-        </form>
-
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
-            <label for="quantity">Quantity:</label>
-
-            <select id="quantity" name="quantity">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-
-            <input type="hidden" name="action" value="addToCart">
-            <input type="hidden" name="item" value="Lime">
-            <input type="submit" value="Order Limes" >
-        </form>
-
-
-      <br>
-
-      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
-          <input type="hidden" name="action" value="addMoreLemons">
-          <input type="hidden" name="item" value="Lemon">
-          <input type="hidden" name="quantity" value="6">
-          <input type="submit" value="Order More Lemons" >
-      </form>
-
-      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
-          <input type="hidden" name="action" value="checkForLemons">
-          <input type="hidden" name="item" value="Lemon">
-          <input type="submit" value="Check Cart for Lemons" >
-      </form>
-
-      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
-          <input type="hidden" name="action" value="checkPriceOfLemons">
-          <input type="hidden" name="item" value="Lemon">
-          <input type="submit" value="Check Price for Lemons" >
-      </form>
-
-      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
-          <input type="hidden" name="action" value="addToCart">
-          <input type="hidden" name="item" value="Potato">
-          <input type="hidden" name="quantity" value="6">
-          <input type="submit" value="Order Potatos" >
-      </form>
+          }
+        ?>
 
       </div>
+
     </div>
 
 <!-- scripts -->
