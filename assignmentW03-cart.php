@@ -121,7 +121,7 @@ switch ($action) {
                     
                                 echo '<li class="list-group-item d-flex justify-content-between">';
                                 echo '<span>Total (USD)</span>';
-                                echo '<strong>$'. number_formats($total,2).'</strong>';
+                                echo '<strong>$'. number_format($total,2) .'</strong>';
                                 echo '</li>';
                         }
                     ?>

@@ -95,7 +95,7 @@ switch ($action) {
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/includes/nav.php'; ?>
 
-  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <div class="pricing-header px-3 py-3 pt-md-3 pb-md-4 mx-auto text-center">
       <h1 class="display-4">Friuty Fresh</h1>
       <p class="lead">We're keepin' it fresh. Fight off those quaranteen pounds by eating our fresh friut insead of that junk in your pantry!</p>
     </div>
