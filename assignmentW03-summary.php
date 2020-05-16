@@ -1,54 +1,28 @@
 <?
+    // Start the session
+    session_start();
 
-// Start the session
-session_start();
-
-//for debugging
-// remove all session variables
-/* session_unset();
-// destroy the session
-session_destroy(); */
-
-//error logging
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+    //error logging
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
 
-include $_SERVER['DOCUMENT_ROOT'].'/includes/friut_functions.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/includes/friut_functions.php';
 
-include $_SERVER['DOCUMENT_ROOT'].'/includes/friuts.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/includes/friuts.php';
 
+    //Filter and store data
+    $orderFirstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_STRING);
+    $orderLastName = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_STRING);
+    $orderEmail = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $orderAddress1 = filter_input(INPUT_POST, 'address1', FILTER_SANITIZE_STRING);
+    $orderAddress2 = filter_input(INPUT_POST, 'address2', FILTER_SANITIZE_STRING);
+    $orderCity = filter_input(INPUT_POST, 'city', FILTER_SANITIZE_STRING);
+    $orderState = filter_input(INPUT_POST, 'state', FILTER_SANITIZE_STRING);
+    $orderZip = filter_input(INPUT_POST, 'zip', FILTER_SANITIZE_STRING);
+    $orderCountry = filter_input(INPUT_POST, 'country', FILTER_SANITIZE_STRING);
 
-/*_____________________ actions _____________________*/
-
-$action = filter_input(INPUT_POST, 'action');
-    if ($action == NULL){
-$action = filter_input(INPUT_GET, 'action');
-}
-
-switch ($action) {
-    case 'uptateQuantity':
-        $item = filter_input(INPUT_POST, 'item', FILTER_SANITIZE_STRING);
-        $quantity = filter_input(INPUT_POST, 'quantity', FILTER_SANITIZE_NUMBER_INT);
-        if ( !isset($fruits[$item]) ) {
-            echo "ERROR: $item is not for sale! <br>";
-        } else {
-            updateQuantityInCart($item,$quantity);
-        }
-    break;
-
-    case 'removeFromCart':
-        $item = filter_input(INPUT_GET, 'item', FILTER_SANITIZE_STRING);
-        if ( !isset($fruits[$item]) ) {
-            echo "ERROR: $item is not for sale! <br>";
-        } else {
-            removeFromCart($item);
-            header("Location: " .$_SERVER['PHP_SELF']);
-            exit();
-        }
-    break;
-    }
 ?>
 
 <!doctype html>
@@ -78,12 +52,54 @@ switch ($action) {
   <![endif]-->
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/includes/nav.php'; ?>
+    <div class="container">
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4">Order Summary</h1>
+            <p class="lead">We thank you and your body will too!</p>
+        </div>
 
-    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <h1 class="display-4">Order Summary</h1>
-        <p class="lead">We thank you and your body will too!</p>
-        
-    </div> 
+        <div class="col-md-4 order-md-2 mb-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Order Summary</span>
+                <span class="badge badge-secondary badge-pill"> <?php echo itemCountInCart(); ?></span>
+            </h4>
+            <ul class="list-group mb-3">
+            <?php
+                        if ( isset($_SESSION['cart']) ) {
+                            $total = 0;
+                            foreach($_SESSION['cart'] as $item){
+                                $total += $fruits[$item['product']]['price']*$item['quantity'];
+                                echo '<li class="list-group-item d-flex justify-content-between lh-condensed">';
+                                echo '<di>';
+                                echo '<h6 class="my-0">'. $item['product'] . '</h6>';
+                                echo '<small class="text-muted">'. $fruits[$item['product']]['desc'] . '<br>Quantity:&nbsp'.$item['quantity']. '</small>';
+                                echo '</di>';
+                                echo '<span class="text-muted">$' .number_format($fruits[$item['product']]['price']*$item['quantity'], 2) . '</span>';
+                                echo '</li>';
+                            }
+                        }
+                        ?>
+                        <li class="list-group-item d-flex justify-content-between">
+                        <span>Total (USD)</span>
+                        <strong><?php echo '$'. number_format($total,2); ?></strong>
+                        </li>
+                    </ul>
+        </div>
+        <div class="col-md-8 order-md-1">
+            <h2>Shipping Information</h2>
+            <?php
+                $shippingInfo = "
+                <p>$orderFirstName $orderLastName <br>
+                $orderAddress1 <br>
+                $orderAddress2 <br>
+                $orderCity $orderState $orderZip <br>
+                $orderCountry
+                ";
+
+                echo $shippingInfo;
+            ?>
+        </div>
+    </div>
 
 <!-- scripts -->
   <script src="js/vendor/modernizr-3.8.0.min.js"></script>

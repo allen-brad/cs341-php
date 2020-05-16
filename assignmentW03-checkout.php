@@ -152,14 +152,14 @@ switch ($action) {
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName">First name</label>
-                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                <input type="text" class="form-control" name="firstName" id="firstName" placeholder="" value="" required>
                 <div class="invalid-feedback">
                   Valid first name is required.
                 </div>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="lastName">Last name</label>
-                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                <input type="text" class="form-control" name="lastName" id="lastName" placeholder="" value="" required>
                 <div class="invalid-feedback">
                   Valid last name is required.
                 </div>
@@ -167,29 +167,16 @@ switch ($action) {
             </div>
 
             <div class="mb-3">
-              <label for="username">Username</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">@</span>
-                </div>
-                <input type="text" class="form-control" id="username" placeholder="Username" required>
-                <div class="invalid-feedback" style="width: 100%;">
-                  Your username is required.
-                </div>
-              </div>
-            </div>
-
-            <div class="mb-3">
               <label for="email">Email <span class="text-muted">(Optional)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com">
               <div class="invalid-feedback">
                 Please enter a valid email address for shipping updates.
               </div>
             </div>
 
             <div class="mb-3">
-              <label for="address">Address</label>
-              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+              <label for="address1">Address</label>
+              <input type="text" class="form-control" name="address1" id="address1" placeholder="1234 Main St" required>
               <div class="invalid-feedback">
                 Please enter your shipping address.
               </div>
@@ -197,13 +184,21 @@ switch ($action) {
 
             <div class="mb-3">
               <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+              <input type="text" class="form-control" name="address2" id="address2" placeholder="Apartment or suite">
+            </div>
+
+            <div class="mb-3">
+              <label for="city">City</label>
+              <input type="text" class="form-control" name="city" id="city" placeholder="City" required>
+              <div class="invalid-feedback">
+                Please enter your shipping city.
+              </div>
             </div>
 
             <div class="row">
               <div class="col-md-5 mb-3">
                 <label for="country">Country</label>
-                <select class="custom-select d-block w-100" id="country" required>
+                <select class="custom-select d-block w-100" name="country" id="country" required>
                   <option value="">Choose...</option>
                   <option>United States</option>
                 </select>
@@ -213,7 +208,7 @@ switch ($action) {
               </div>
               <div class="col-md-4 mb-3">
                 <label for="state">State</label>
-                <select class="custom-select d-block w-100" id="state" required>
+                <select class="custom-select d-block w-100" name="state" id="state" required>
                   <option value="">Choose...</option>
                   <option>California</option>
                   <option>Utah</option>
@@ -225,7 +220,7 @@ switch ($action) {
               </div>
               <div class="col-md-3 mb-3">
                 <label for="zip">Zip</label>
-                <input type="text" class="form-control" id="zip" placeholder="" required>
+                <input type="text" class="form-control" name="zip" id="zip" placeholder="" required>
                 <div class="invalid-feedback">
                   Zip code required.
                 </div>
