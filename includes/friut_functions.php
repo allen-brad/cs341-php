@@ -39,8 +39,8 @@ function searchForFruitByName($name, $array) {
  function itemCountInCart(){
     $totalItems = 0;
     if ( isset($_SESSION['cart']) ) {
-        foreach($_SESSION['cart'] as $value){
-                $totalItems += $value['quantity'];
+        foreach($_SESSION['cart'] as $item){
+                $totalItems += $item['quantity'];
         }
     }
     return $totalItems;  
