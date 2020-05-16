@@ -101,20 +101,6 @@ switch ($action) {
     </div>
 
     <div class="container">
-      <div>
-      <?php
-
-        // show session variables
-        echo "Session variables are:<br>";
-        print_r($_SESSION).'<br>';
-
-        echo '<br>Items in cart: ' . itemCountInCart() . '<br>';
-
-        echo "ACTION IS: $action <br>";
-
-      ?>
-      </div>
-
       <div class="card-deck mb-3 text-center">
 
         <?php

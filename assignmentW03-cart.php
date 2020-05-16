@@ -78,11 +78,6 @@ switch ($action) {
   <![endif]-->
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/includes/nav.php'; ?>
-  <?php
-  echo "ACTION IS: $action <br>"; 
-  print_r($_SESSION).'<br>';
-  ?>
-
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <h1 class="display-4">Cart</h1>
         <p class="lead">We're keepin' it fresh. Fight off those quaranteen pounds by eating our fresh friut insead of that junk in your pantry!</p>
@@ -126,7 +121,7 @@ switch ($action) {
                     
                                 echo '<li class="list-group-item d-flex justify-content-between">';
                                 echo '<span>Total (USD)</span>';
-                                echo '<strong>$'. nuber_formats($total,2).'</strong>';
+                                echo '<strong>$'. number_formats($total,2).'</strong>';
                                 echo '</li>';
                         }
                     ?>
