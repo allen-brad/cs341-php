@@ -44,7 +44,7 @@ switch ($action) {
             echo "ERROR: $item is not for sale! <br>";
         } else {
             removeFromCart($item);
-            header("Location: " . $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']);
+            header("Location: " .$_SERVER['PHP_SELF']);
             exit();
         }
     break;
