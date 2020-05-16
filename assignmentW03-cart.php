@@ -28,51 +28,13 @@ $action = filter_input(INPUT_GET, 'action');
 }
 
 switch ($action) {
-    case 'addToCart':
-        //filter post variables
-        $quantity = filter_input(INPUT_POST, 'quantity', FILTER_SANITIZE_NUMBER_INT);
+    case 'uptateQuantity':
         $item = filter_input(INPUT_POST, 'item', FILTER_SANITIZE_STRING);
-        
-        //test to see if item really is a fruit before adding it to the cart
-        //if ( !searchForFruitByName($item, $fruits)) {
+        $quantity = filter_input(INPUT_POST, 'quantity', FILTER_SANITIZE_NUMBER_INT);
         if ( !isset($fruits[$item]) ) {
             echo "ERROR: $item is not for sale! <br>";
         } else {
-            //echo "$item found in fruits... safe to proceed. <br>";
-            
-            //shopping cart is an associative array with fruit name and quantity
-            //if cart does not exist then create it and add item
-            if ( !isset($_SESSION["cart"]) ) {
-                //make the cart and add item
-                //echo "MAKING CART <br>";
-                $_SESSION["cart"][] = array(
-                    'product' => $item,
-                    'quantity' => $quantity
-                );
-            } else {
-                //cart exists so check and see if the item is already in the cart and increase the quantity to it
-                if ( searchCartByItem($item) ) {
-                    echo "$item found in cart... increment. <br>";
-                    updateQuantityInCart($item, $quantity);
-                } else {
-                    echo "$item not found in cart... adding to cart. <br>";
-                    $_SESSION["cart"][] = array(
-                        'product' => $item,
-                        'quantity' => $quantity,
-                    );
-                }
-            }
-        }
-        // PGR to redirect to this page to prevent page refresh resubmiting form post
-    break;
-
-    case 'checkForLemons':
-        $item = filter_input(INPUT_POST, 'item', FILTER_SANITIZE_STRING);
-        if ( !searchCartByItem($item)) {
-            echo "CheckForLemons: $item is NOT in Cart <br>";
-            echo searchCartByItem($item, $_SESSION['cart']) .'<br>';
-        } else {
-            echo "CheckForLemons: $item is in Cart <br>";
+            updateQuantityInCart($item,$quantity);
         }
     break;
 
@@ -111,15 +73,18 @@ switch ($action) {
   <![endif]-->
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/includes/nav.php'; ?>
+  <?php
+  echo "ACTION IS: $action <br>"; 
+  print_r($_SESSION).'<br>';
+  ?>
 
-  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-      <h1 class="display-4">Cart</h1>
-      <p class="lead">We're keepin' it fresh. Fight off those quaranteen pounds by eating our fresh friut insead of that junk in your pantry!</p>
-  </div>
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">Cart</h1>
+        <p class="lead">We're keepin' it fresh. Fight off those quaranteen pounds by eating our fresh friut insead of that junk in your pantry!</p>
+    </div>
 
-  <div class="container">
-    <div>
-<!-- start of cart -->
+    <div class="container">
+        <!-- start of cart -->
         <div class="row">
             <div class="col-md-4 order-md-2 mb-4">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -127,7 +92,7 @@ switch ($action) {
                     <span class="badge badge-secondary badge-pill"> <?php echo itemCountInCart(); ?></span>
                 </h4>
                 <ul class="list-group mb-3">
-<!-- build indiviual cart items  -->
+                    <!-- build indiviual cart items  -->
                     <?php
                     if ( isset($_SESSION['cart']) ) {
                         $total = 0;
@@ -149,33 +114,34 @@ switch ($action) {
                     </li>
                 </ul>
             </div>
-        </div>   
-    </div>
-  </div>
-
-    <div class="row">
-        <div class="col-4">Item</div>
-        <div class="col-2">Quantity</div>
-        <div class="col-3">Price</div>
-        <div class="col-3">Price</div>
-    </div>
-    <div class="row">
-        <div class="col-4">Banana</div>
-        <div class="col-2">
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
-                <div class="input-group mb-3">
-                    <input type="text" name="quantity" class="form-control" placeholder="3" aria-label="Quantity" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <input type="hidden" name="action" value="uptateQuantity">
-                        <input type="hidden" name="item" value="Banana">
-                        <button class="btn btn-outline-secondary" type="button">Button</button>
-                    </div>
-                </div>
-            </form>
         </div>
-        <div class="col-3">$2.00</div>
-        <div class="col-3">$6.00</div>
+
+        <div class="row">
+            <div class="col-4">Item</div>
+            <div class="col-2">Quantity</div>
+            <div class="col-3">Price</div>
+            <div class="col-3">Price</div>
+        </div>
+        <div class="row">
+            <div class="col-4">Banana</div>
+            <div class="col-2">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
+                    <div class="input-group mb-3">
+                        <input type="text" name="quantity" class="form-control" placeholder="3" aria-label="Quantity" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <input type="hidden" name="action" value="uptateQuantity">
+                            <input type="hidden" name="item" value="Banana">
+                            <button class="btn btn-outline-secondary" type="sumbit">Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-3">$2.00</div>
+            <div class="col-3">$6.00</div>
+        </div>
     </div>
+
+    
 
 <!-- scripts -->
   <script src="js/vendor/modernizr-3.8.0.min.js"></script>
