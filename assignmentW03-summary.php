@@ -6,6 +6,10 @@
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
+    
+    include $_SERVER['DOCUMENT_ROOT'].'/includes/friut_functions.php';
+
+    include $_SERVER['DOCUMENT_ROOT'].'/includes/friuts.php';
 
     //Filter and store data
     $orderFirstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_STRING);
