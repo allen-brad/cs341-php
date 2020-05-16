@@ -35,6 +35,10 @@ function searchForFruitByName($name, $array) {
         }
     }
  }
+ function removeFromCart($item){
+    $key = array_search($item, array_column($_SESSION['cart'], 'product'));
+    unset($_SESSION['cart'][$key]);
+ }
 
  function itemCountInCart(){
     $totalItems = 0;

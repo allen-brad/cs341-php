@@ -38,10 +38,13 @@ switch ($action) {
         }
     break;
 
-    case 'checkPriceOfLemons':
-        $item = filter_input(INPUT_POST, 'item', FILTER_SANITIZE_STRING);
-
-        echo 'The unit price of lemons is: ' . $fruits[$item]['price'] . '<br>';
+    case 'removeFromCart':
+        $item = filter_input(INPUT_GET, 'item', FILTER_SANITIZE_STRING);
+        if ( !isset($fruits[$item]) ) {
+            echo "ERROR: $item is not for sale! <br>";
+        } else {
+            removeFromCart($item);
+        }
     break;
     }
 ?>
@@ -109,6 +112,7 @@ switch ($action) {
                             echo '<input type="hidden" name="action" value="uptateQuantity">';
                             echo '<input type="hidden" name="item" value="'. $item['product']. '">';
                             echo '<button class="btn btn-outline-secondary" type="sumbit">Update</button>';
+                            echo '<button class="btn btn-outline-secondary" type="button" onclick="document.location = \'assignmentW03-cart.php?action=removeFromCart&item='.$item['product']. ' \'">Remove</button> ';
                             echo '</div>';
                             echo '</div>';
                             echo '</form>';
@@ -125,30 +129,6 @@ switch ($action) {
                     </li>
                 </ul>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-4">Item</div>
-            <div class="col-2">Quantity</div>
-            <div class="col-3">Price</div>
-            <div class="col-3">Price</div>
-        </div>
-        <div class="row">
-            <div class="col-4">Banana</div>
-            <div class="col-2">
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
-                    <div class="input-group mb-3">
-                        <input type="text" name="quantity" class="form-control" placeholder="3" aria-label="Quantity" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <input type="hidden" name="action" value="uptateQuantity">
-                            <input type="hidden" name="item" value="Banana">
-                            <button class="btn btn-outline-secondary" type="sumbit">Update</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col-3">$2.00</div>
-            <div class="col-3">$6.00</div>
         </div>
     </div>
 
