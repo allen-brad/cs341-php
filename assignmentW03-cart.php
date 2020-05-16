@@ -119,18 +119,6 @@ switch ($action) {
 
   <div class="container">
     <div>
-      <?php
-
-        // show session variables
-        echo "Session variables are:<br>";
-        print_r($_SESSION).'<br>';
-
-        echo '<br>Items in cart: ' . itemCountInCart() . '<br>';
-
-        echo "ACTION IS: $action <br>";
-        ?>
-
-
 <!-- start of cart -->
         <div class="row">
             <div class="col-md-4 order-md-2 mb-4">
@@ -164,6 +152,30 @@ switch ($action) {
         </div>   
     </div>
   </div>
+
+    <div class="row">
+        <div class="col-4">Item</div>
+        <div class="col-2">Quantity</div>
+        <div class="col-3">Price</div>
+        <div class="col-3">Price</div>
+    </div>
+    <div class="row">
+        <div class="col-4">Banana</div>
+        <div class="col-2">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
+                <div class="input-group mb-3">
+                    <input type="text" name="quantity" class="form-control" placeholder="3" aria-label="Quantity" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <input type="hidden" name="action" value="uptateQuantity">
+                        <input type="hidden" name="item" value="Banana">
+                        <button class="btn btn-outline-secondary" type="button">Button</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-3">$2.00</div>
+        <div class="col-3">$6.00</div>
+    </div>
 
 <!-- scripts -->
   <script src="js/vendor/modernizr-3.8.0.min.js"></script>

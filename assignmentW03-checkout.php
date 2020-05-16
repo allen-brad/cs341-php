@@ -113,23 +113,9 @@ switch ($action) {
   <?php include $_SERVER['DOCUMENT_ROOT'].'/includes/nav.php'; ?>
 
   <div class="container">
-    <div>
-      <?php
-
-        // show session variables
-        echo "Session variables are:<br>";
-        print_r($_SESSION).'<br>';
-
-        echo '<br>Items in cart: ' . itemCountInCart() . '<br>';
-
-        echo "ACTION IS: $action <br>";
-
-      ?>
-    </div>
     <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4" src="img/ba.svg" alt="" width="72" height="72">
         <h2>Checkout</h2>
-        <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
       </div>
 
       <div class="row">
@@ -147,7 +133,7 @@ switch ($action) {
                             echo '<li class="list-group-item d-flex justify-content-between lh-condensed">';
                             echo '<di>';
                             echo '<h6 class="my-0">'. $item['product'] . '</h6>';
-                            echo '<small class="text-muted">'. $fruits[$item['product']]['desc'] . '<br>Quantity:'.$item['quantity']. '</small>';
+                            echo '<small class="text-muted">'. $fruits[$item['product']]['desc'] . '<br>Quantity:&nbsp'.$item['quantity']. '</small>';
                             echo '</di>';
                             echo '<span class="text-muted">$' .number_format($fruits[$item['product']]['price']*$item['quantity'], 2) . '</span>';
                             echo '</li>';
@@ -162,7 +148,7 @@ switch ($action) {
         </div>
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Billing address</h4>
-          <form class="needs-validation" novalidate>
+          <form action="assignmentW03-summary.php"  class="needs-validation" novalidate>
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName">First name</label>
@@ -230,6 +216,8 @@ switch ($action) {
                 <select class="custom-select d-block w-100" id="state" required>
                   <option value="">Choose...</option>
                   <option>California</option>
+                  <option>Utah</option>
+                  <option>Idaho</option>
                 </select>
                 <div class="invalid-feedback">
                   Please provide a valid state.
@@ -244,6 +232,7 @@ switch ($action) {
               </div>
             </div>
             <hr class="mb-4">
+            <input type="hidden" name="action" value="completeOrder">
             <button class="btn btn-primary btn-lg btn-block" type="submit">Complete Order</button>
           </form>
           <hr class="mb-4">
