@@ -7,11 +7,6 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-
-    include $_SERVER['DOCUMENT_ROOT'].'/includes/friut_functions.php';
-
-    include $_SERVER['DOCUMENT_ROOT'].'/includes/friuts.php';
-
     //Filter and store data
     $orderFirstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_STRING);
     $orderLastName = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_STRING);
@@ -57,47 +52,46 @@
             <h1 class="display-4">Order Summary</h1>
             <p class="lead">We thank you and your body will too!</p>
         </div>
-
-        <div class="col-md-4 order-md-2 mb-4">
-            <h4 class="d-flex justify-content-between align-items-center mb-3">
-                <span class="text-muted">Order Summary</span>
-                <span class="badge badge-secondary badge-pill"> <?php echo itemCountInCart(); ?></span>
-            </h4>
-            <ul class="list-group mb-3">
-            <?php
-                        if ( isset($_SESSION['cart']) ) {
-                            $total = 0;
-                            foreach($_SESSION['cart'] as $item){
-                                $total += $fruits[$item['product']]['price']*$item['quantity'];
-                                echo '<li class="list-group-item d-flex justify-content-between lh-condensed">';
-                                echo '<di>';
-                                echo '<h6 class="my-0">'. $item['product'] . '</h6>';
-                                echo '<small class="text-muted">'. $fruits[$item['product']]['desc'] . '<br>Quantity:&nbsp'.$item['quantity']. '</small>';
-                                echo '</di>';
-                                echo '<span class="text-muted">$' .number_format($fruits[$item['product']]['price']*$item['quantity'], 2) . '</span>';
-                                echo '</li>';
-                            }
+        <div class="row">
+            <div class="col-md-4 order-md-2 mb-4">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Order Summary</span>
+                    <span class="badge badge-secondary badge-pill"> <?php echo itemCountInCart(); ?></span>
+                </h4>
+                <ul class="list-group mb-3">
+                    <?php
+                    if ( isset($_SESSION['cart']) ) {
+                        $total = 0;
+                        foreach($_SESSION['cart'] as $item){
+                            $total += $fruits[$item['product']]['price']*$item['quantity'];
+                            echo '<li class="list-group-item d-flex justify-content-between lh-condensed">';
+                            echo '<di>';
+                            echo '<h6 class="my-0">'. $item['product'] . '</h6>';
+                            echo '<small class="text-muted">'. $fruits[$item['product']]['desc'] . '<br>Quantity:&nbsp'.$item['quantity']. '</small>';
+                            echo '</di>';
+                            echo '<span class="text-muted">$' .number_format($fruits[$item['product']]['price']*$item['quantity'], 2) . '</span>';
+                            echo '</li>';
                         }
-                        ?>
-                        <li class="list-group-item d-flex justify-content-between">
-                        <span>Total (USD)</span>
-                        <strong><?php echo '$'. number_format($total,2); ?></strong>
-                        </li>
-                    </ul>
-        </div>
-        <div class="col-md-8 order-md-1">
-            <h2>Shipping Information</h2>
-            <?php
-                $shippingInfo = "
-                <p>$orderFirstName $orderLastName <br>
-                $orderAddress1 <br>
-                $orderAddress2 <br>
-                $orderCity $orderState $orderZip <br>
-                $orderCountry
-                ";
-
-                echo $shippingInfo;
-            ?>
+                    }
+                    ?>
+                    <li class="list-group-item d-flex justify-content-between">
+                    <span>Total (USD)</span>
+                    <strong><?php echo '$'. number_format($total,2); ?></strong>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-8 order-md-1">
+                <h2 class="text-mutes">Shipping Information</h2>
+                <?php
+                    echo "<p>$orderFirstName $orderLastName <br>";
+                    echo "$orderAddress1 <br>";
+                    if ($orderAddress2) {
+                        echo $orderAddress2 . "<br>";
+                    }
+                    echo "$orderCity $orderState $orderZip <br>";
+                    echo $orderCountry;
+                ?>
+            </div>
         </div>
     </div>
 
