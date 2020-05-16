@@ -139,6 +139,21 @@ switch ($action) {
             <span class="badge badge-secondary badge-pill"> <?php echo itemCountInCart(); ?></span>
           </h4>
           <ul class="list-group mb-3">
+            <!-- make cart li items -->
+            <?php
+            foreach ($_SESSION['cart'] as $key => $val) {
+                if ($val['product'] === $item) {
+                    echo '<li class="list-group-item d-flex justify-content-between lh-condensed">';
+                    echo '<div>';
+                    echo '<h6 class="my-0">Product name</h6>';
+                }
+            }
+            ?>
+
+
+
+
+
             <li class="list-group-item d-flex justify-content-between lh-condensed">
               <div>
                 <h6 class="my-0">Product name</h6>
@@ -172,15 +187,6 @@ switch ($action) {
               <strong>$20</strong>
             </li>
           </ul>
-
-          <form class="card p-2">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Promo code">
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-secondary">Redeem</button>
-              </div>
-            </div>
-          </form>
         </div>
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Billing address</h4>
@@ -266,8 +272,9 @@ switch ($action) {
               </div>
             </div>
             <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Complete Order</button>
           </form>
+          <hr class="mb-4">
         </div>
       </div>
   </div>

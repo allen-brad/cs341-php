@@ -129,6 +129,13 @@ switch ($action) {
 
         echo "ACTION IS: $action <br>";
 
+        if ( isset($_SESSION['cart']) ) {
+            foreach($_SESSION['cart'] as $item){
+                echo 'Item Name: '. $item['product'] . '<br>';
+                echo 'Item Quantity: '. $item['quantity'] . '<br>';
+            }
+        }
+
       ?>
     </div>
   </div>
