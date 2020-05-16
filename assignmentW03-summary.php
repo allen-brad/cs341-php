@@ -6,7 +6,7 @@
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-    
+
     include $_SERVER['DOCUMENT_ROOT'].'/includes/friut_functions.php';
 
     include $_SERVER['DOCUMENT_ROOT'].'/includes/friuts.php';
@@ -106,7 +106,10 @@
   <script src="js/plugins.js"></script>
   <script src="js/main.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
-
+<?php
+//destroy the cart so they can create a new order
+unset($_SESSION['cart']);
+?>
 </body>
 
 </html>
