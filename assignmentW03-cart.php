@@ -186,7 +186,7 @@ switch ($action) {
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                     <span>Total (USD)</span>
-                    <strong>$20</strong>
+                    <strong>$20 <?php echo ' real total: '.$total; ?></strong>
                     </li>
                 </ul>
             </div>
