@@ -234,6 +234,7 @@ switch ($action) {
             <hr class="mb-4">
             <input type="hidden" name="action" value="completeOrder">
             <button class="btn btn-primary btn-lg btn-block" type="submit">Complete Order</button>
+            <a class="btn btn-secondary btn-lg btn-block" href="/assignmentW03.php">Coontinue Shopping</a>
           </form>
           <hr class="mb-4">
         </div>
