@@ -44,6 +44,8 @@ switch ($action) {
             echo "ERROR: $item is not for sale! <br>";
         } else {
             removeFromCart($item);
+            header("Location: " . $_SERVER['REQUEST_URI']);
+            exit();
         }
     break;
     }
