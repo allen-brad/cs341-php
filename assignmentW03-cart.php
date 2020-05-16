@@ -86,7 +86,7 @@ switch ($action) {
     <div class="container">
         <!-- start of cart -->
         <div class="row">
-            <div class="col-md-4 order-md-2 mb-4">
+            <div class="col-md-12 order-md-2 mb-4">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Your cart</span>
                     <span class="badge badge-secondary badge-pill"> <?php echo itemCountInCart(); ?></span>
@@ -101,10 +101,21 @@ switch ($action) {
                             echo '<li class="list-group-item d-flex justify-content-between lh-condensed">';
                             echo '<di>';
                             echo '<h6 class="my-0">'. $item['product'] . '</h6>';
-                            echo '<small class="text-muted">'. $fruits[$item['product']]['desc'] . '<br>Quantity:'.$item['quantity']. '</small>';
+                            echo '<small class="text-muted">'. $fruits[$item['product']]['desc'] . '</small>';
+                            echo '<form action="'. htmlspecialchars($_SERVER["PHP_SELF"]). '" method="post" >';
+                            echo '<div class="input-group mb-3">';
+                            echo '<input type="text" name="quantity" class="form-control" placeholder="'. $item['quantity'] . '" aria-label="Quantity" aria-describedby="basic-addon2">';
+                            echo '<div class="input-group-append">';
+                            echo '<input type="hidden" name="action" value="uptateQuantity">';
+                            echo '<input type="hidden" name="item" value="'. $item['product']. '">';
+                            echo '<button class="btn btn-outline-secondary" type="sumbit">Update</button>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</form>';
                             echo '</di>';
                             echo '<span class="text-muted">$' .number_format($fruits[$item['product']]['price']*$item['quantity'], 2) . '</span>';
                             echo '</li>';
+
                         }
                     }
                     ?>
