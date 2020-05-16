@@ -127,10 +127,14 @@ switch ($action) {
                     ?>
                     <li class="list-group-item d-flex justify-content-between">
                     <span>Total (USD)</span>
-                    <strong><?php echo $total; ?></strong>
+                    <strong><?php echo '$'. nuber_formats($total,2); ?></strong>
                     </li>
                 </ul>
             </div>
+        </div>
+        <div class="col-md-12">
+            <a class="btn btn-secondary btn-lg float-left" href="/assignmentW03.php">Coontinue Shopping</a>
+            <a class="btn btn-secondary btn-lg float-right mr-2" href="/assignmentW03-checkout.php">Check Out</a>
         </div>
     </div>
 

@@ -27,13 +27,6 @@ $action = filter_input(INPUT_POST, 'action');
 $action = filter_input(INPUT_GET, 'action');
 }
 
-/* foreach ($fruits as $key=>$value) {
-  echo 'Name: '. $key .'<br>';
-  echo 'Desc: '. $fruits[$key]['desc'] .'<br>';
-  echo 'Price: $'. number_format($fruits[$key]['price'], 2) .'<br>';
-} */
-
-
 switch ($action) {
     case 'addToCart':
         //filter post variables
@@ -55,7 +48,10 @@ switch ($action) {
                 $_SESSION["cart"][] = array(
                     'product' => $item,
                     'quantity' => $quantity
+                    
                 );
+                header("Location: " .$_SERVER['PHP_SELF']);
+                exit();
             } else {
                 //cart exists so check and see if the item is already in the cart and increase the quantity to it
                 if ( searchCartByItem($item) ) {
@@ -67,26 +63,12 @@ switch ($action) {
                         'product' => $item,
                         'quantity' => $quantity,
                     );
+                    header("Location: " .$_SERVER['PHP_SELF']);
+                    exit();
                 }
             }
         }
         // PGR to redirect to this page to prevent page refresh resubmiting form post
-    break;
-
-    case 'checkForLemons':
-        $item = filter_input(INPUT_POST, 'item', FILTER_SANITIZE_STRING);
-        if ( !searchCartByItem($item)) {
-            echo "CheckForLemons: $item is NOT in Cart <br>";
-            echo searchCartByItem($item, $_SESSION['cart']) .'<br>';
-        } else {
-            echo "CheckForLemons: $item is in Cart <br>";
-        }
-    break;
-
-    case 'checkPriceOfLemons':
-        $item = filter_input(INPUT_POST, 'item', FILTER_SANITIZE_STRING);
-
-        echo 'The unit price of lemons is: ' . $fruits[$item]['price'] . '<br>';
     break;
     }
 ?>

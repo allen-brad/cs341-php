@@ -142,7 +142,7 @@ switch ($action) {
                     ?>
                     <li class="list-group-item d-flex justify-content-between">
                     <span>Total (USD)</span>
-                    <strong><?php echo $total; ?></strong>
+                    <strong><?php echo '$'. nuber_formats($total,2); ?></strong>
                     </li>
                 </ul>
         </div>
