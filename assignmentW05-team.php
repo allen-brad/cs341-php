@@ -50,7 +50,7 @@ function getScriptureById($scriptureId){
    $stmt = $db->prepare($sql);
    $stmt->execute();
    $allScriptures = $stmt->fetchAll(PDO::FETCH_ASSOC);
-   //$stmt->closeCursor();
+   $stmt->closeCursor();
 
 ?>
 
@@ -68,8 +68,8 @@ function getScriptureById($scriptureId){
 <body>
 <?php
     print_r ($allScriptures).'<br>';
-    print_r (getScriptureById(1)).'<br>';
-    print_r (getScripturesByBook('Mosiah')).'<br>';
+    //print_r (getScriptureById(1)).'<br>';
+    //print_r (getScripturesByBook('Mosiah')).'<br>';
 ?>
 </body>
 </html>
