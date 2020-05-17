@@ -32,7 +32,7 @@ function getScriptureById($scriptureId){
     $stmt->bindValue(':id', $scriptureId, PDO::PARAM_INT);
     $stmt->execute();
     $scripture = $stmt->fetch(PDO::FETCH_ASSOC);
-    $stmt->closeCursor();
+    //$stmt->closeCursor();
     return $scripture;
   }
 
@@ -42,7 +42,7 @@ function getScriptureById($scriptureId){
     $stmt->bindValue(':book', $book, PDO::PARAM_STR);
     $stmt->execute();
     $scriptures = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $stmt->closeCursor();
+    //$stmt->closeCursor();
     return $scriptures;
    }
 
@@ -50,7 +50,7 @@ function getScriptureById($scriptureId){
    $stmt = $db->prepare($sql);
    $stmt->execute();
    $allScriptures = $stmt->fetchAll(PDO::FETCH_ASSOC);
-   $stmt->closeCursor();
+   //$stmt->closeCursor();
 
 ?>
 
