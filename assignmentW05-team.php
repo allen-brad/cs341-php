@@ -3,30 +3,30 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+try
+{
+  $dbUrl = getenv('DATABASE_URL');
+
+  $dbOpts = parse_url($dbUrl);
+
+  $dbHost = $dbOpts["host"];
+  $dbPort = $dbOpts["port"];
+  $dbUser = $dbOpts["user"];
+  $dbPassword = $dbOpts["pass"];
+  $dbName = ltrim($dbOpts["path"],'/');
+
+  $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
+
+  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $ex)
+{
+  echo 'Error!: ' . $ex->getMessage();
+  die();
+}
+
 
 function getScriptureById($scriptureId){
-    try
-    {
-      $dbUrl = getenv('DATABASE_URL');
-    
-      $dbOpts = parse_url($dbUrl);
-    
-      $dbHost = $dbOpts["host"];
-      $dbPort = $dbOpts["port"];
-      $dbUser = $dbOpts["user"];
-      $dbPassword = $dbOpts["pass"];
-      $dbName = ltrim($dbOpts["path"],'/');
-    
-      $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
-    
-      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      return $db;
-    }
-    catch (PDOException $ex)
-    {
-      echo 'Error!: ' . $ex->getMessage();
-      die();
-    }
     $sql = 'SELECT * FROM Scriptures WHERE id = :id';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':id', $scriptureId, PDO::PARAM_INT);
@@ -34,31 +34,9 @@ function getScriptureById($scriptureId){
     $scripture = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
     return $scripture;
-}
+  }
 
-function getScripturesByBook($book){
-    try
-    {
-      $dbUrl = getenv('DATABASE_URL');
-    
-      $dbOpts = parse_url($dbUrl);
-    
-      $dbHost = $dbOpts["host"];
-      $dbPort = $dbOpts["port"];
-      $dbUser = $dbOpts["user"];
-      $dbPassword = $dbOpts["pass"];
-      $dbName = ltrim($dbOpts["path"],'/');
-    
-      $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
-    
-      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      return $db;
-    }
-    catch (PDOException $ex)
-    {
-      echo 'Error!: ' . $ex->getMessage();
-      die();
-    }
+  function getScripturesByBook($book){
     $sql = 'SELECT * FROM Scriptures WHERE book = :book';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':book', $book, PDO::PARAM_STR);
@@ -66,38 +44,13 @@ function getScripturesByBook($book){
     $scriptures = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
     return $scriptures;
- }
+   }
 
-function getAllScriptures(){
-   try
-   {
-     $dbUrl = getenv('DATABASE_URL');
-   
-     $dbOpts = parse_url($dbUrl);
-   
-     $dbHost = $dbOpts["host"];
-     $dbPort = $dbOpts["port"];
-     $dbUser = $dbOpts["user"];
-     $dbPassword = $dbOpts["pass"];
-     $dbName = ltrim($dbOpts["path"],'/');
-   
-     $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
-   
-     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-     return $db;
-   }
-   catch (PDOException $ex)
-   {
-     echo 'Error!: ' . $ex->getMessage();
-     die();
-   }
    $sql = 'SELECT * FROM Scriptures';
    $stmt = $db->prepare($sql);
    $stmt->execute();
    $allScriptures = $stmt->fetchAll(PDO::FETCH_ASSOC);
    $stmt->closeCursor();
-   return $allScriptures;
-}
 
 ?>
 
@@ -114,7 +67,7 @@ function getAllScriptures(){
 
 <body>
 <?php
-    print_r (getAllScriptures()).'<br>';
+    print_r ($allScriptures).'<br>';
     print_r (getScriptureById(1)).'<br>';
     print_r (getScripturesByBook('Mosiah')).'<br>';
 ?>
