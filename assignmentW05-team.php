@@ -67,7 +67,7 @@ function getScripturesByBook($book){
     $stmt->closeCursor();
     return $scriptures;
  }
- 
+
 function getAllScriptures(){
    try
    {
@@ -114,7 +114,7 @@ function getAllScriptures(){
 
 <body>
 <?php
-    print_r ($allScriptures).'<br>';
+    print_r (getAllScriptures()).'<br>';
     print_r (getScriptureById(1)).'<br>';
     print_r (getScripturesByBook('Mosiah')).'<br>';
 ?>
