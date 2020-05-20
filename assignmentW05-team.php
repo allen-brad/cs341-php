@@ -19,6 +19,7 @@ function dbConnect() {try
       $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
 
       $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      echo 'DB set';
       return $db;
     }
     catch (PDOException $ex)
@@ -48,6 +49,7 @@ function getScriptureById($scriptureId){
     //$stmt->closeCursor();
     return $scriptures;
    }
+
    dbConnect();
    $sql = 'SELECT * FROM Scriptures';
    $stmt = $db->prepare($sql);
