@@ -1,0 +1,33 @@
+After completing the assignment, please answer the questions in this text file and submit it to I-Learn.
+
+1. Provide a link to your myDb.sql file at GitHub (the file that contains all the SQL commands needed to create your database).
+    https://github.com/allen-brad/cs341-php/tree/master/db/W04
+
+2. Describe something from your database that you think came together very nicely.
+    While not an engineer, I work with data a lot at work so I'm familiar with relational databases.
+    My project will be used in real life and I tried to design a database that will actually be used.
+
+3. Describe something from your database that you think could be improved or extended in the future.
+    In the members table the Members of Search and Rescue will be the users of the application.
+    This means that the createdBy and lastUpdateBy IDs will be the primary key from the same table.
+    I haven't figure out how to do a FK using the PK yet.
+
+
+4. Briefly describe the "coolest" thing you learned while completing this assignment.
+    Don't use quotes to define the table name or field names when creating tables. "Member" and Member are !=
+
+5. Briefly describe two principles of good database design.
+    Don't repeat data.
+    Related data belongs in separate table.
+    Use primary keys to identify a set of related data.
+
+6. Please select the category you feel best describes your assignment:
+        1 - Some attempt was made
+        2 - Developing, but significantly deficient
+        3 - Slightly deficient, but still mostly adequate
+        4 - Meets requirements
+    5 - Shows creativity and excels above and beyond requirements
+
+
+7. Provide a brief justification (1-2 sentences) for selecting that category.
+    My database follows good design and is more complex that is required including multiple FKs.
