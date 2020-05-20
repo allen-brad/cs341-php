@@ -57,7 +57,22 @@ function getScriptureById($scriptureId){
     $stmt->execute();
     $allScriptures = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
-    return $allScriptures;
+    //return $allScriptures;
+
+    foreach ($allScriptures as $scripture) {
+      if ($scripture['book']) {
+          echo '<p><strong>'.$scripture['book'];
+      }
+      if ($scripture['chapter']) {
+          echo ' '.$scripture['chapter'].':';
+      }
+      if ($scripture['verse']) {
+        echo $scripture['verse'].'</strong> ';
+      }
+      if ($scripture['content']) {
+        echo $scripture['content'].'</p> ';
+      }
+    }
    }
 ?>
 
@@ -77,7 +92,7 @@ function getScriptureById($scriptureId){
 
 
     echo '<div>All Scriptures: <br>';
-    print_r (getAllScriptures()).'</di>';
+    echo getAllScriptures();
 
     echo '<div>Scriptures by ID: <br>';
     print_r (getScriptureById(1)).'</div>';
@@ -86,6 +101,8 @@ function getScriptureById($scriptureId){
     print_r (getScripturesByBook('Mosiah')).'</div>';
 
     echo getAllScriptures();
+
+    
 ?>
 </body>
 </html>
