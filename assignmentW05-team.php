@@ -19,7 +19,6 @@ function dbConnection() {try
       $dbConnection = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
 
       $dbConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      echo 'DB set';
       return $dbConnection;
     }
     catch (PDOException $ex)
@@ -31,32 +30,35 @@ function dbConnection() {try
 
 
 function getScriptureById($scriptureId){
+    $db = dbConnection();
     $sql = 'SELECT * FROM Scriptures WHERE id = :id';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':id', $scriptureId, PDO::PARAM_INT);
     $stmt->execute();
     $scripture = $stmt->fetch(PDO::FETCH_ASSOC);
-    //$stmt->closeCursor();
+    $stmt->closeCursor();
     return $scripture;
   }
 
   function getScripturesByBook($book){
+    $db = dbConnection();
     $sql = 'SELECT * FROM Scriptures WHERE book = :book';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':book', $book, PDO::PARAM_STR);
     $stmt->execute();
     $scriptures = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    //$stmt->closeCursor();
+    $stmt->closeCursor();
     return $scriptures;
    }
-
-   $db = dbConnection();
-   $sql = 'SELECT * FROM Scriptures';
-   $stmt = $db->prepare($sql);
-   $stmt->execute();
-   $allScriptures = $stmt->fetchAll(PDO::FETCH_ASSOC);
-   $stmt->closeCursor();
-
+   function getAllScriptures(){
+    $db = dbConnection();
+    $sql = 'SELECT * FROM Scriptures';
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $allScriptures = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $allScriptures;
+   }
 ?>
 
 <!doctype html>
@@ -72,7 +74,7 @@ function getScriptureById($scriptureId){
 
 <body>
 <?php
-    print_r ($allScriptures).'<br>';
+    print_r (getAllScriptures()).'<br>';
     //print_r (getScriptureById(1)).'<br>';
     //print_r (getScripturesByBook('Mosiah')).'<br>';
 ?>
