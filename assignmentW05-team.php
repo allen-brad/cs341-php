@@ -74,6 +74,8 @@ function getScriptureById($scriptureId){
 
 <body>
 <?php
+
+
     echo '<div>All Scriptures: <br>';
     print_r (getAllScriptures()).'</di>';
 
@@ -82,6 +84,8 @@ function getScriptureById($scriptureId){
 
     echo '<div>Scriptures By Book: <br>';
     print_r (getScripturesByBook('Mosiah')).'</div>';
+
+    echo getAllScriptures();
 ?>
 </body>
 </html>
