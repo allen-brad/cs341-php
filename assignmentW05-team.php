@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-function dbConnect() {try
+function dbConnection() {try
     {
       $dbUrl = getenv('DATABASE_URL');
 
@@ -16,11 +16,11 @@ function dbConnect() {try
       $dbPassword = $dbOpts["pass"];
       $dbName = ltrim($dbOpts["path"],'/');
 
-      $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
+      $dbConnection = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
 
-      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $dbConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       echo 'DB set';
-      return $db;
+      return $dbConnection;
     }
     catch (PDOException $ex)
     {
@@ -50,7 +50,7 @@ function getScriptureById($scriptureId){
     return $scriptures;
    }
 
-   dbConnect();
+   $db = dbConnection();
    $sql = 'SELECT * FROM Scriptures';
    $stmt = $db->prepare($sql);
    $stmt->execute();
