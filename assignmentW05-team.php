@@ -40,7 +40,27 @@ function getScriptureById($scriptureId){
     return $scripture;
   }
 
-  function getScripturesByBook($book){
+  function getScripturesByBook($chapter){
+    $db = dbConnection();
+    $sql = 'SELECT * FROM Scriptures WHERE chapter = :chapter';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':chapter', $chapter, PDO::PARAM_STR);
+    $stmt->execute();
+    $scriptures = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $scriptures;
+   }
+   function getScripturesByBook($verse){
+    $db = dbConnection();
+    $sql = 'SELECT * FROM Scriptures WHERE book = :verse';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':verse', $verse, PDO::PARAM_STR);
+    $stmt->execute();
+    $scriptures = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $scriptures;
+   }
+   function getScripturesByBook($book){
     $db = dbConnection();
     $sql = 'SELECT * FROM Scriptures WHERE book = :book';
     $stmt = $db->prepare($sql);
@@ -50,6 +70,7 @@ function getScriptureById($scriptureId){
     $stmt->closeCursor();
     return $scriptures;
    }
+
    function getAllScriptures(){
     $db = dbConnection();
     $sql = 'SELECT * FROM Scriptures';
@@ -69,9 +90,9 @@ function getScriptureById($scriptureId){
       if ($scripture['verse']) {
         echo $scripture['verse'].'</strong> ';
       }
-      if ($scripture['content']) {
-        echo $scripture['content'].'</p> ';
-      }
+      //if ($scripture['content']) {
+       // echo $scripture['content'].'</p> ';
+      //}
     }
    }
 ?>
