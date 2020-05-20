@@ -92,15 +92,13 @@ function getScriptureById($scriptureId){
 
 
     echo '<div>All Scriptures: <br>';
-    echo getAllScriptures();
+    getAllScriptures();
 
     echo '<div>Scriptures by ID: <br>';
     print_r (getScriptureById(1)).'</div>';
 
     echo '<div>Scriptures By Book: <br>';
     print_r (getScripturesByBook('Mosiah')).'</div>';
-
-    echo getAllScriptures();
 
     
 ?>
