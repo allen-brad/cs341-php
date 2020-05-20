@@ -74,14 +74,14 @@ function getScriptureById($scriptureId){
 
 <body>
 <?php
-    echo '<br>All Scriptures: <br>';
-    print_r (getAllScriptures()).'<br><br><';
+    echo '<div>All Scriptures: <br>';
+    print_r (getAllScriptures()).'</di>';
 
-    echo '<br>Scriptures by ID: <br>';
-    print_r (getScriptureById(1)).'<br><br><';
+    echo '<div>Scriptures by ID: <br>';
+    print_r (getScriptureById(1)).'</div>';
 
-    echo '<br>Scriptures By Book: <br>';
-    print_r (getScripturesByBook('Mosiah')).'<br><br>';
+    echo '<div>Scriptures By Book: <br>';
+    print_r (getScripturesByBook('Mosiah')).'</div>';
 ?>
 </body>
 </html>
