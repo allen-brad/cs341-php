@@ -47,13 +47,12 @@ function getScriptureById($scriptureId){
     //$stmt->closeCursor();
     return $scriptures;
    }
-
+   dbConnect();
    $sql = 'SELECT * FROM Scriptures';
-   $stmt = dbConnect()->prepare($sql);
+   $stmt = $db->prepare($sql);
    $stmt->execute();
    $allScriptures = $stmt->fetchAll(PDO::FETCH_ASSOC);
    $stmt->closeCursor();
-
 
 ?>
 
